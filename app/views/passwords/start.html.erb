@@ -1,0 +1,15 @@
+<%= form_tag passwords_path, class:"form-horizontal" do %>
+  <h3>Input passwords</h3>
+  <div class="form-group">
+    <%= label_tag :words, "Passwords", class: "col-md-2 control-label" %>
+    <div class="col-md-6">
+      <%= text_area_tag :words, "", class:"form-control monospace", rows:15 %>
+      <small class="help-block">One per line</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6 col-md-offset-2">
+      <%= submit_tag "Go", class:"btn btn-success" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<h1>Enter match</h1>
+<% unless @word_to_match.blank? %>
+  <p><strong>Previous match:</strong> <%= @word_to_match[0] %> (<%= @word_to_match[1] %>)</p>
+<% end %>
+<%= form_tag passwords_match_path do %>
+  <%= hidden_field_tag :words, @words.join(",") %>
+<div class="row">
+  <div class="col-md-4">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Word</th>
+          <th>Matches</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @words.each do |word| %>
+          <tr>
+            <td class="monospace"><%= word %></td>
+            <td style="width:30px;"><%= text_field_tag "matches[#{word}]", "", class:"form-control text-center monospace" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div class="col-md-6">
+    <%= submit_tag "Go", class:"btn btn-success" %>
+    <%= link_to "Restart", passwords_path, class:"btn btn-default" %>
+  </div>
+</div>
+<% end %>
