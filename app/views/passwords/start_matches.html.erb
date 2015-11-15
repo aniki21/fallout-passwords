@@ -15,7 +15,6 @@
 <%= form_tag passwords_match_path do %>
   <%= hidden_field_tag :words, @words.join(",") %>
   <%= hidden_field_tag :attempts, @attempts %>
-  <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>
@@ -38,7 +37,6 @@
         <% end %>
       </tbody>
     </table>
-  </div>
 
   <div class="row">
     <div class="col-md-6">
