@@ -27,7 +27,7 @@
           <% @words.each do |word| %>
             <tr>
               <td class="monospace"><%= word %></td>
-              <td><%= text_field_tag "matches[#{word}]", "", class:"form-control text-center monospace" %></td>
+              <td><%= number_field_tag "matches[#{word}]", "", class:"form-control text-center monospace", min:0, max:9 %></td>
             </tr>
           <% end %>
         <% else %>
