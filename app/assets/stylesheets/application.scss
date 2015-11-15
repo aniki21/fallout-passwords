@@ -15,7 +15,46 @@
  */
 @import "bootstrap";
 
-.monospace{
-  font-family:monospace;
+$tx:#28E877;
+$bg:#11331E;
+
+*{
   text-transform:uppercase;
+}
+
+body{
+  background:$bg;
+  color:$tx;
+  font-family: 'VT323', monospace;
+  font-size:20px;
+}
+
+h1,h2,h3,h4{
+  text-align:center;
+  font-family:'VT323', monospace;
+  text-transform:uppercase;
+}
+
+.form-control{
+  border:1px solid $tx;
+  border-radius: 0;
+  background:$bg;
+  color:$tx;
+  font-size:1em;
+}
+
+.btn.btn-fallout{
+  font-size:1.2em;
+  background:$bg;
+  border:1px solid $tx;
+  border-radius:0;
+  color:$tx;
+  width:100%;
+  &:hover{
+    color: $bg;
+    background:$tx;
+  }
+}
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td{
+  border-color:$tx;
 }

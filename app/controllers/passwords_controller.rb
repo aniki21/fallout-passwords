@@ -14,12 +14,17 @@ class PasswordsController < ApplicationController
     entries.each do |entry|
       @words.push(Word.new(entry))
     end
+    @attempts = 0
+    @remaining = 4
   end
 
   # POST  /passwords/match
   def try_matches
     @words = []
     @word_to_match = params[:matches].select{|w,m| !m.blank? }.first
+
+    @attempts = params[:attempts].to_i + 1
+    @remaining = 4 - @attempts
 
     entries = params[:words].split(",")
     entries.each do |entry|

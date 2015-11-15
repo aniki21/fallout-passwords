@@ -1,33 +1,51 @@
-<h1>Enter match</h1>
-<% unless @word_to_match.blank? %>
-  <p><strong>Previous match:</strong> <%= @word_to_match[0] %> (<%= @word_to_match[1] %>)</p>
-<% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <% unless @word_to_match.blank? %>
+        <p>Last Attempt: <%= @word_to_match[0] %> (<%= @word_to_match[1] %>)</p>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <p>Remaining:
+      <% (1..@remaining).each do |i| %>
+        &block;
+    <% end %>
+      </p>
+    </div>
+  </div>
 <%= form_tag passwords_match_path do %>
   <%= hidden_field_tag :words, @words.join(",") %>
-<div class="row">
-  <div class="col-md-4">
+  <%= hidden_field_tag :attempts, @attempts %>
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table">
       <thead>
         <tr>
           <th>Word</th>
-          <th>Matches</th>
+          <th style="width:80px;">Matches</th>
         </tr>
       </thead>
       <tbody>
-        <% @words.each do |word| %>
+        <% if @words.any? %>
+          <% @words.each do |word| %>
+            <tr>
+              <td class="monospace"><%= word %></td>
+              <td><%= text_field_tag "matches[#{word}]", "", class:"form-control text-center monospace" %></td>
+            </tr>
+          <% end %>
+        <% else %>
           <tr>
-            <td class="monospace"><%= word %></td>
-            <td style="width:30px;"><%= text_field_tag "matches[#{word}]", "", class:"form-control text-center monospace" %></td>
+            <td colspan="2" class="text-center">No matches found</td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p><%= submit_tag "Go", class:"btn btn-fallout" %></p>
+    </div>
+    <div class="col-md-6">
+      <p><%= link_to "Restart", passwords_path, class:"btn btn-fallout" %></p>
+    </div>
   </div>
-  <div class="col-md-6">
-    <%= submit_tag "Go", class:"btn btn-success" %>
-    <%= link_to "Restart", passwords_path, class:"btn btn-default" %>
-  </div>
-</div>
 <% end %>
