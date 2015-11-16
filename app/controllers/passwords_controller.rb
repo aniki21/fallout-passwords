@@ -17,7 +17,7 @@ class PasswordsController < ApplicationController
     
     unless @words.any?
       flash[:error] = "No words entered"
-      redirect_to :back and return
+      redirect_to passwords_path and return
     end
 
     @attempts = 0
