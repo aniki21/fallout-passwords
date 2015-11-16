@@ -11,8 +11,8 @@ class Word
 
   def matches(_word)
     _count = 0
-    my_letters = letters
-    matching = _word.strip.upcase.split("")
+    my_letters = self.letters
+    matching = _word.to_s.strip.upcase.split("")
 
     matching.each_with_index do |l,i|
       if l == my_letters[i]

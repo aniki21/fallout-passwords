@@ -35,7 +35,8 @@ h1,h2,h3,h4{
   text-transform:uppercase;
 }
 
-.form-control{
+.form-control,
+.form-control:focus{
   border:1px solid $tx;
   border-radius: 0;
   background:$bg;
@@ -58,4 +59,9 @@ input[type="number"]{ padding:0; }
 }
 .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td{
   border-color:$tx;
+}
+
+.highlight{
+  background:$tx;
+  color:$bg;
 }

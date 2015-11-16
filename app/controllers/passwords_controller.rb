@@ -10,12 +10,20 @@ class PasswordsController < ApplicationController
   # Form with list of words
   def start_matches
     @words = []
-    entries = params[:words].split("\n").map{|w| w.strip }
+    entries = params[:words].split(/\W+/)
     entries.each do |entry|
       @words.push(Word.new(entry))
     end
+    
+    unless @words.any?
+      flash[:error] = "No words entered"
+      redirect_to :back and return
+    end
+
     @attempts = 0
     @remaining = 4
+
+    @suggestion = suggest(@words)
   end
 
   # POST  /passwords/match
@@ -34,7 +42,31 @@ class PasswordsController < ApplicationController
         @words.push(w)
       end
     end
+
+    unless @words.any?
+      flash[:error] = "No words match"
+      redirect_to passwords_path and return
+    end
+
+    @suggestion = suggest(@words)
     render action: :start_matches and return
+  end
+
+  private
+  def suggest(words)
+    matches = {}
+    words.each do |word|
+      matches[:"#{word}"] = 0
+      words.each do |w|
+        unless word == w
+          if word.matches(w) > 0
+            matches[:"#{word}"] += 1
+          end
+        end
+      end
+    end
+    matches = matches.sort{|a,b| a[1] <=> b[1] }
+    return matches.first[0].to_s
   end
 
 end
