@@ -19,7 +19,6 @@ $tx:#28E877;
 $bg:#11331E;
 
 *{
-  text-transform:uppercase;
 }
 
 body{
@@ -33,6 +32,8 @@ h1,h2,h3,h4{
   text-align:center;
   font-family:'VT323', monospace;
   text-transform:uppercase;
+  text-decoration:underline;
+  text-transform:uppercase;
 }
 
 .form-control,
@@ -42,10 +43,13 @@ h1,h2,h3,h4{
   background:$bg;
   color:$tx;
   font-size:1em;
+  text-transform:uppercase;
 }
+
 input[type="number"]{ padding:0; }
 
 .btn.btn-fallout{
+  text-transform:uppercase;
   font-size:1.2em;
   background:$bg;
   border:1px solid $tx;
@@ -57,11 +61,35 @@ input[type="number"]{ padding:0; }
     background:$tx;
   }
 }
+
 .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td{
   border-color:$tx;
 }
 
+th{
+  font-weight:normal;
+}
+
+
 .highlight{
   background:$tx;
   color:$bg;
+}
+
+.smallprint{
+  margin-top:3em;
+  text-align:center;
+  font-size:0.5em;
+  font-family:Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform:none;
+
+  a:link,a:visited{
+    color:$tx;
+    text-decoration:underline;
+  }
+  a:hover, a:active{
+    background:$tx;
+    color:$bg;
+    text-decoration:none;
+  }
 }

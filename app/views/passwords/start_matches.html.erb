@@ -1,6 +1,5 @@
   <div class="row">
     <div class="col-md-6">
-      <p>Suggestion: <%= @suggestion %></p>
       <% unless @word_to_match.blank? %>
         <p>Last Attempt: <%= @word_to_match[0] %> (<%= @word_to_match[1] %>)</p>
       <% end %>
@@ -26,8 +25,8 @@
       <tbody>
         <% if @words.any? %>
           <% @words.each do |word| %>
-            <tr class="<%= "highlight" if (word.to_s == @suggestion && @words.count > 2) %>">
-              <td><%= word %></td>
+            <tr>
+              <td><span class="<%= "highlight" if (word.to_s == @suggestion && @words.count > 2) %>"><%= word %></span></td>
               <td><%= number_field_tag "matches[#{word}]", "", class:"form-control text-center monospace", min:0, max:9 %></td>
             </tr>
           <% end %>
