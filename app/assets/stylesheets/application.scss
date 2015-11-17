@@ -33,7 +33,6 @@ h1,h2,h3,h4{
   font-family:'VT323', monospace;
   text-transform:uppercase;
   text-decoration:underline;
-  text-transform:uppercase;
 }
 
 .form-control,
@@ -70,7 +69,6 @@ th{
   font-weight:normal;
 }
 
-
 .highlight{
   background:$tx;
   color:$bg;
@@ -82,14 +80,6 @@ th{
   font-size:0.5em;
   font-family:Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform:none;
-
-  a:link,a:visited{
-    color:$tx;
-    text-decoration:underline;
-  }
-  a:hover, a:active{
-    background:$tx;
-    color:$bg;
-    text-decoration:none;
-  }
+  a:link,a:visited{ color:$tx; text-decoration:underline; }
+  a:hover,a:active{ background:$tx; color:$bg; text-decoration:none; }
 }
