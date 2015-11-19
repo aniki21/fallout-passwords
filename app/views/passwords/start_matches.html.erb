@@ -1,17 +1,22 @@
-  <div class="row">
-    <div class="col-md-6">
-      <% unless @word_to_match.blank? %>
-        <p>Last Attempt: <%= @word_to_match[0] %> (<%= @word_to_match[1] %>)</p>
-      <% end %>
-    </div>
-    <div class="col-md-6">
-      <p>Remaining:
-      <% (1..@remaining).each do |i| %>
-        &block;
+<% unless flash[:error].blank? %>
+  <p><span class="highlight">ERROR: <%= flash[:error] %></span></p>
+<% end %>
+
+<div class="row">
+  <div class="col-md-6">
+    <% unless @word_to_match.blank? %>
+      <p>Last Attempt: <%= @word_to_match[0] %> (<%= @word_to_match[1] %>)</p>
     <% end %>
-      </p>
-    </div>
   </div>
+  <div class="col-md-6">
+    <p>Remaining:
+    <% (1..@remaining).each do |i| %>
+      &block;
+  <% end %>
+    </p>
+  </div>
+</div>
+
 <%= form_tag passwords_match_path do %>
   <%= hidden_field_tag :words, @words.join(",") %>
   <%= hidden_field_tag :attempts, @attempts %>

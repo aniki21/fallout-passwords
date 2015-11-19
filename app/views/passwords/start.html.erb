@@ -1,13 +1,11 @@
+<% unless flash[:error].blank? %>
+  <p><span class="highlight">ERROR: <%= flash[:error] %></span></p>
+<% end %>
 <%= form_tag passwords_path, class:"form-horizontal" do %>
   <div class="row">
     <div class="col-sm-6">
       <p>Enter available passwords</p>
     </div>
-      <% unless flash[:error].blank? %>
-    <div class="col-sm-6 text-right">
-        <p><span class="highlight">ERROR: <%= flash[:error] %></span></p>
-    </div>
-      <% end %>
   </div>
   <p><%= text_area_tag :words, "", class:"form-control", rows:15, placeholder:"One per line" %></p>
   <p><%= submit_tag "Go", class:"btn btn-fallout" %></p>

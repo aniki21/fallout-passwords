@@ -30,11 +30,17 @@ class PasswordsController < ApplicationController
   def try_matches
     @words = []
     @word_to_match = params[:matches].select{|w,m| !m.blank? }.first
-
-    @attempts = params[:attempts].to_i + 1
+    entries = params[:words].split(",")
+    @attempts = params[:attempts].to_i
     @remaining = 4 - @attempts
 
-    entries = params[:words].split(",")
+    if @word_to_match.blank?
+      flash.now[:error] = "No match entered"
+      @words = entries.map{|e| Word.new(e) }
+      @suggestion = suggest(@words)
+      render action: :start_matches and return
+    end
+
     entries.each do |entry|
       w = Word.new(entry)
       matches = w.matches(@word_to_match[0])
@@ -44,8 +50,11 @@ class PasswordsController < ApplicationController
     end
 
     unless @words.any?
-      flash[:error] = "No words match"
-      redirect_to passwords_path and return
+      flash[:error] = "No words matched"
+      @words = entries.map{|e| Word.new(e) }
+    else
+      @attempts += 1
+      @remaining -= 1
     end
 
     @suggestion = suggest(@words)
