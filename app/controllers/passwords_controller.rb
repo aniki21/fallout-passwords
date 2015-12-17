@@ -20,6 +20,12 @@ class PasswordsController < ApplicationController
       redirect_to passwords_path and return
     end
 
+    lengths = @words.map{|w| w.length }.uniq!
+    if lengths.count > 1
+      flash.now[:error] = "Word lengths inconsistent"
+      render action: "start" and return
+    end
+
     @attempts = 0
     @remaining = 4
 

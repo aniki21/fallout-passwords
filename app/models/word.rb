@@ -25,4 +25,8 @@ class Word
   def to_s
     return @word
   end
+
+  def length
+    @word.length
+  end
 end
