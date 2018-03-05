@@ -4,4 +4,4 @@ A small Rails app to help break passwords when hacking in Fallout 4.
 
 No database required.
 
-Example running at https://fallout4-passwords.herokuapp.com/
+Example running at http://fallout.demondownload.xyz
